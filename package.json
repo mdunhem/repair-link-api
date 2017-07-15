@@ -45,7 +45,6 @@
     "express-session": "^1.14.2",
     "mongoose": "^4.6.6",
     "morgan": "^1.7.0",
-    "request": "^2.78.0",
     "tslint": "^5.0.0",
     "typescript": "^2.2.2"
   },
@@ -61,7 +60,6 @@
     "@types/mongoose": "^4.7.9",
     "@types/morgan": "^1.7.32",
     "@types/node": "^7.0.12",
-    "@types/request": "0.0.42",
     "@types/supertest": "^2.0.0",
     "concurrently": "^3.4.0",
     "jest": "^19.0.2",
