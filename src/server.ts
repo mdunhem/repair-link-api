@@ -19,9 +19,9 @@ const MongoStore = mongo(session);
 /**
  * Connect to MongoDB.
  */
-let db = mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGOLAB_URI);
 
-db.connection.on("error", () => {
+mongoose.connection.on("error", () => {
   console.log("MongoDB connection error. Please make sure MongoDB is running.");
   process.exit();
 });
