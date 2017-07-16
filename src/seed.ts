@@ -14,6 +14,8 @@ mongoose.connection.on("open", () => {
     vehicle.save(saveError => {
       if (saveError) {
         console.error(saveError);
+      } else {
+        console.log("Seeded the db");
       }
     });
   });
