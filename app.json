@@ -1,6 +1,7 @@
 {
   "name": "repair-link-api",
   "scripts": {
+    "postdeploy": "node dist/seed.js"
   },
   "env": {
   },
