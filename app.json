@@ -7,7 +7,9 @@
   "formation": {
   },
   "addons": [
-
+    {
+      "plan": "mongolab:sandbox-free"
+    }
   ],
   "buildpacks": [
     {
