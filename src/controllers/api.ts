@@ -16,7 +16,7 @@ router.route("/vehicles")
   .post(postNewVehicle);
 
 function getApi(req: Request, res: Response) {
-  res.send({ test: "It worked!" });
+  res.send({ test: "It worked!!" });
 }
 
 function getVehicles(request: Request, response: Response) {
