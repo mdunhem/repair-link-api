@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const VehicleSchema = new mongoose.Schema({
-  vin: { type: Number, unique: true },
+  vin: { type: String, unique: true },
   year: Number,
   make: String,
-  model: String
+  vehicleModel: String
 });
 
 const Vehicle = mongoose.model("Vehicle", VehicleSchema);
@@ -18,7 +18,7 @@ mongoose.connection.on("open", () => {
       process.exit();
     }
 
-    const vehicle = new Vehicle({ vin: 1, year: 2003, make: "Toyota", vehicleModel: "Corolla" });
+    const vehicle = new Vehicle({ vin: "FE1", year: 2003, make: "Toyota", vehicleModel: "Corolla" });
     vehicle.save(saveError => {
       if (saveError) {
         console.error(saveError);
