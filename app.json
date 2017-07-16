@@ -1,13 +1,16 @@
 {
   "name": "repair-link-api",
   "scripts": {
+    "postdeploy": "node bin/seed.js"
   },
   "env": {
   },
   "formation": {
   },
   "addons": [
-
+    {
+      "plan": "mongolab:sandbox-free"
+    }
   ],
   "buildpacks": [
     {

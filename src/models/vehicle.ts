@@ -1,7 +1,7 @@
 import { model, Model, Document, Schema } from "mongoose";
 
 const VehicleSchema = new Schema({
-  vin: { type: Number, unique: true },
+  vin: { type: String, unique: true },
   year: Number,
   make: String,
   model: String
