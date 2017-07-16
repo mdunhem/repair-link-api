@@ -2,7 +2,7 @@ import { Express, Router, Request, Response } from "express";
 import { VehiclesRouteHandler } from "./vehicles";
 import { Vehicle } from "../models/vehicle";
 
-const BASEURL = '/api';
+const BASEURL = "/api";
 
 export function setupRoutes(server: Express) {
   setupDefaults(server);
