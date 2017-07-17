@@ -27,7 +27,9 @@ mongoose.connection.on("error", () => {
   process.exit();
 });
 
-//options for cors midddleware
+/**
+ * Options for cross origin support
+ */
 const corsOptions: cors.CorsOptions = {
   allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
   credentials: true,
