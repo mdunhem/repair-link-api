@@ -7,6 +7,7 @@ import * as errorHandler from "errorhandler";
 import * as mongo from "connect-mongo"; // (session)
 import * as path from "path";
 import * as mongoose from "mongoose";
+import * as cors from "cors";
 import { setupRoutes } from "./routes";
 
 
@@ -26,7 +27,14 @@ mongoose.connection.on("error", () => {
   process.exit();
 });
 
-
+//options for cors midddleware
+const corsOptions: cors.CorsOptions = {
+  allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
+  credentials: true,
+  methods: ["GET", "HEAD", "OPTIONS", "PUT", "PATCH", "POST", "DELETE"],
+  origin: "*",
+  preflightContinue: false
+};
 
 /**
  * Express configuration.
@@ -36,6 +44,7 @@ server.use(compression());
 server.use(logger(process.env.LOGGERLEVEL || "dev"));
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({ extended: true }));
+server.use(cors(corsOptions));
 
 /**
  * Set up routes
