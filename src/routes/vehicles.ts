@@ -8,7 +8,7 @@ export class VehiclesRouteHandler extends BaseRouteHandler<VehicleModel> {
 
   public get put() {
     return (request: Request, response: Response, next: NextFunction) => {
-      const { vin, year, make, model } = request.body;
+      const { vin, year, make, vehicleModel } = request.body;
       this.collection.findOne({ vin }, (error, existingVehicle) => {
         if (error) {
           return next(error);
@@ -17,7 +17,7 @@ export class VehiclesRouteHandler extends BaseRouteHandler<VehicleModel> {
         existingVehicle.vin = vin;
         existingVehicle.year = year;
         existingVehicle.make = make;
-        existingVehicle.model = model; // need to change this to vehicleModel
+        existingVehicle.vehicleModel = vehicleModel; // need to change this to vehicleModel
 
         existingVehicle.save((error, savedVehicle) => {
           if (error) {
@@ -31,8 +31,8 @@ export class VehiclesRouteHandler extends BaseRouteHandler<VehicleModel> {
 
   public get post() {
     return (request: Request, response: Response, next: NextFunction) => {
-      const { vin, year, make, model } = request.body;
-      const vehicle = new Vehicle({ vin, year, make, model });
+      const { vin, year, make, vehicleModel } = request.body;
+      const vehicle = new Vehicle({ vin, year, make, vehicleModel });
 
       this.collection.findOne({ vin }, (error, existingVehicle) => {
         if (error) {

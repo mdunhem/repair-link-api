@@ -4,7 +4,7 @@ const VehicleSchema = new Schema({
   vin: { type: String, unique: true },
   year: Number,
   make: String,
-  model: String
+  vehicleModel: String
 });
 
 export interface VehicleModel extends Document {
