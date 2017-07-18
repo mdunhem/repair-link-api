@@ -1,7 +1,7 @@
 {
   "name": "repair-link-api",
   "scripts": {
-    "postdeploy": "node bin/seed.js"
+    "postdeploy": "tsc -p ./migrations && typeorm migrations:run -c prod"
   },
   "env": {
   },
@@ -9,7 +9,7 @@
   },
   "addons": [
     {
-      "plan": "mongolab:sandbox-free"
+      "plan": "heroku-postgresql:hobby-dev"
     }
   ],
   "buildpacks": [
