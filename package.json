@@ -59,7 +59,10 @@
     "express-session": "^1.14.2",
     "mongoose": "^4.6.6",
     "morgan": "^1.7.0",
+    "pg": "^6.4.1",
+    "reflect-metadata": "^0.1.10",
     "tslint": "^5.0.0",
+    "typeorm": "0.1.0-alpha.32",
     "typescript": "^2.2.2"
   },
   "devDependencies": {
