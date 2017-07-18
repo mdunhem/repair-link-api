@@ -1,13 +1,13 @@
 import { Response, Request, NextFunction, Router } from "express";
+import { getEntityManager, Repository } from "typeorm";
 import { Model, Document } from "mongoose";
 
-export abstract class BaseRouteHandler<T extends Document> {
+export abstract class BaseRouteHandler<T> {
   public router = Router();
-  protected collection: Model<T>;
-  protected uuid = "id";
+  protected repository: Repository<T>;
 
-  constructor(collection: Model<T>) {
-    this.collection = collection;
+  constructor(Entity: (new () => T)) {
+    this.repository = getEntityManager().getRepository<T>(Entity);
     this.setupMiddleware();
     this.setupRoutes();
   }
@@ -16,32 +16,18 @@ export abstract class BaseRouteHandler<T extends Document> {
     // Implement any route specific middleware as needed
   }
 
-  private validateResponse(response: Response, items?: Document[]) {
-    if (!items || !items.length) {
-      response.status(404).send("Item not found");
-      return false;
-    }
-    return true;
-  }
-
   public get get() {
-    return (request: Request, response: Response, next: NextFunction) => {
+    return async (request: Request, response: Response, next: NextFunction) => {
       if (request.params.id) {
-        this.collection.find({ [this.uuid]: request.params.id }, (error, items) => {
-          if (error) {
-            response.send(error);
-          }
-
-          response.json(items[0]);
-        });
+        const entity = await this.repository.findOneById(request.params.id);
+        if (!entity) {
+          response.status(404).send("Item not found").end();
+          return;
+        }
+        response.json(entity);
       } else {
-        this.collection.find((error, items) => {
-          if (error) {
-            response.send(error);
-          }
-
-          response.json(items);
-        });
+        const entities = await this.repository.find();
+        response.json(entities);
       }
     };
   }
@@ -50,5 +36,10 @@ export abstract class BaseRouteHandler<T extends Document> {
 
   public abstract get post(): (request: Request, response: Response, next: NextFunction) => any;
 
-  protected abstract setupRoutes(): void;
+  public abstract get delete(): (request: Request, response: Response, next: NextFunction) => any;
+
+  protected setupRoutes(): void {
+    this.router.route("/").get(this.get);
+    this.router.route("/:id").get(this.get);
+  }
 }
