@@ -1,7 +1,7 @@
 {
   "name": "repair-link-api",
   "scripts": {
-    "postdeploy": "tsc -p ./migrations && typeorm migrations:run -c prod"
+    // "postdeploy": "tsc -p ./migrations && typeorm migrations:run -c prod"
   },
   "env": {
   },
