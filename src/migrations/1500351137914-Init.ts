@@ -1,4 +1,4 @@
-import {Connection, EntityManager, MigrationInterface, QueryRunner} from "typeorm";
+import { Connection, EntityManager, MigrationInterface, QueryRunner } from "typeorm";
 
 export class Init1500351137914 implements MigrationInterface {
 
