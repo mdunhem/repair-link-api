@@ -10,14 +10,17 @@
   "license": "MIT",
   "scripts": {
     "start": "npm run build && npm run serve",
-    "start-watch": "npm run build && npm run watch",
+    "start-watch": "npm run build && npm run migrations-local && npm run watch",
     "build": "npm run build-ts && npm run tslint",
+    "migrations": "typeorm migrations:run -c prod",
+    "migrations-local": "typeorm migrations:run -c localhost",
     "serve": "node dist/server.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"cyan.bold,green.bold\" \"npm run watch-ts\" \"nodemon dist/server.js\"",
     "test": "jest --forceExit",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
-    "tslint": "tslint -c tslint.json -p tsconfig.json"
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "heroku-postbuild": "tsc -p ./src/migrations && typeorm migrations:run -c prod"
   },
   "jest": {
     "globals": {
@@ -59,7 +62,10 @@
     "express-session": "^1.14.2",
     "mongoose": "^4.6.6",
     "morgan": "^1.7.0",
+    "pg": "^6.4.1",
+    "reflect-metadata": "^0.1.10",
     "tslint": "^5.0.0",
+    "typeorm": "0.1.0-alpha.32",
     "typescript": "^2.2.2"
   },
   "devDependencies": {

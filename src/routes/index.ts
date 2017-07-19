@@ -1,6 +1,6 @@
 import { Express, Router, Request, Response } from "express";
 import { VehiclesRouteHandler } from "./vehicles";
-import { Vehicle } from "../models/vehicle";
+import { Vehicle } from "../entity/vehicle";
 
 const BASEURL = "/api";
 
