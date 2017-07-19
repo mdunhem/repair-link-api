@@ -9,7 +9,7 @@
   "author": "Mikael Dunhem",
   "license": "MIT",
   "scripts": {
-    "start": "npm run build && npm run migrations && npm run serve",
+    "start": "npm run build && npm run serve",
     "start-watch": "npm run build && npm run migrations-local && npm run watch",
     "build": "npm run build-ts && npm run tslint",
     "migrations": "typeorm migrations:run -c prod",
@@ -19,7 +19,8 @@
     "test": "jest --forceExit",
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
-    "tslint": "tslint -c tslint.json -p tsconfig.json"
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "heroku-postbuild": "npm run migrations"
   },
   "jest": {
     "globals": {

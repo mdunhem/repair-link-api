@@ -42,11 +42,11 @@ module.exports = [
       "dist/subscriber/*.js,"
     ],
     "migrations": [
-      "migrations/*.js"
+      "dist/migrations/*.js"
     ],
     "cli": {
       "entitiesDir": "src/entity",
-      "migrationsDir": "migrations",
+      "migrationsDir": "src/migrations",
       "subscribersDir": "src/subscriber"
     }
   }
