@@ -20,7 +20,7 @@
     "build-ts": "tsc",
     "watch-ts": "tsc -w",
     "tslint": "tslint -c tslint.json -p tsconfig.json",
-    "heroku-postbuild": "npm run migrations"
+    "heroku-postbuild": "tsc -p ./src/migrations && typeorm migrations:run -c prod"
   },
   "jest": {
     "globals": {
